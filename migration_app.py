@@ -6,6 +6,8 @@ import streamlit as st
 import data_munging
 import plot_migration
 
+from data_munging import ALL_STATES_TITLE
+
 padding = 0
 st.set_page_config(page_title="Migration Network", layout="wide", page_icon="📍")
 
@@ -22,7 +24,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-from data_munging import ALL_STATES_TITLE
 
 TABLE_PAGE_LEN = 10
 
@@ -46,6 +47,7 @@ with st.sidebar.form(key="my_form"):
         step=1,
         format="%i",
     )
+
     st.markdown(
         '<p class="small-font">Results Limited to top 5 per State in overall US</p>',
         unsafe_allow_html=True,
@@ -58,11 +60,11 @@ expander.write(
 This app allows users to view migration between states from 2018-2019.
 Overall US plots all states with substantial migration-based relationships with other states.
 Any other option plots only migration from or to a given state. This map will be updated
-to show migration between 2019 and 2020 once new census data comes out :) 
+to show migration between 2019 and 2020 once new census data comes out.
 
-Incoming: Shows for a given state, the percent of their **total inbound migration from** another state
+Incoming: Shows for a given state, the percent of their **total inbound migration from** another state.
 
-Outgoing: Shows for a given staet, the percent of their **total outbound migration to** another state
+Outgoing: Shows for a given state, the percent of their **total outbound migration to** another state.
 """
 )
 
@@ -72,6 +74,7 @@ Outgoing: Shows for a given staet, the percent of their **total outbound migrati
 network_place, _, descriptor = st.columns([6, 1, 3])
 
 network_loc = network_place.empty()
+
 
 # Create starting graph
 
